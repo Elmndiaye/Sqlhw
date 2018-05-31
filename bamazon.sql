@@ -1,4 +1,5 @@
 
+DROP DATABASE IF EXISTS bamazon;
 CREATE DATABASE bamazon;
 
 USE bamazon;
@@ -10,6 +11,7 @@ CREATE TABLE products(
   department_name VARCHAR(50),
   price  INT(60),
   stock_quantity VARCHAR(50),
+  product_sale VARCHAR(50),
   PRIMARY KEY (id)
 );
 
@@ -43,3 +45,14 @@ VALUES ("DR009", "Tool1", "Garden", "13", "150" );
 INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
 VALUES ("DR0010", "Birima", "Msic", "3000", "32" );
 
+SELECT * FROM products;
+
+USE bamazon;
+
+CREATE TABLE departments(
+  id INT NOT NULL AUTO_INCREMENT,
+  department_id VARCHAR(100) NOT NULL,
+  department_name VARCHAR(45) NOT NULL,
+  over_head_costs VARCHAR(50),
+
+);
