@@ -42,7 +42,7 @@ connection.connect(function(err) {
         rangeSearch();
         break;
       case "Add New Product":
-        songSearch();
+        productSearch();
         break;
       
       }

@@ -55,25 +55,22 @@ function buyProduct() {
    });
 }
 
-function howMany(selection){
- connection.query("SELECT * FROM products WHERE product_name=?", selection, function(err, res) {
+function howMany(boughtItem){
+ connection.query("SELECT * FROM products WHERE product_name=?", boughtItem, function(err, res) {
    if (err) throw err;
    console.log("The price is $" + res[0].price + " per unit. \nWe have " + res[0].qty + " units available.");
    inquirer.prompt({
        name: "numberSought",
-       type: "choices",
+       type: "input",
        message: "How many would you like to buy?",
-       choices: [i],
-       function(){
-       for (var i = 0; i < res.length; i++);}
    }).then(function(answer){
      if (parseFloat(answer.numberSought) <= parseFloat(res[0].qty)){
        var totalPrice = parseFloat(answer.numberSought) * parseFloat(res[0].price);
-       var stockLeft = parseFloat(res[0].qty) - parseFloat(answer.numberSought);
+       var boughtAmount = parseFloat(res[0].qty) - parseFloat(answer.numberSought);
        console.log("The total price will be: $"+totalPrice);
-       console.log("After purchase, we will have "+stockLeft+ " units left.");
+       console.log("After purchase, we will have "+boughtAmount+ " units left.");
        console.log("GET THEM WHILE YOU CAN! ATTENTION SHOPPERS!");
-       purchaseQty(selection, stockLeft);
+       purchaseQty(boughtItem, boughtAmount);
        }
      else {
        console.log("You can see, above, that we do not have enough units in stock.");
